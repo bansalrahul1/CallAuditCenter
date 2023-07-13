@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CallAuditCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Call_Details">
+    <Key>
+      <PropertyRef Name="Call_ID" />
+    </Key>
+    <Property Name="Call_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Agent_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Agent_ID" Type="Int32" />
+    <Property Name="Call_DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Call_Scoring_Details" Relationship="Self.FK__Call_Scor__Call___60A75C0F" FromRole="Call_Details" ToRole="Call_Scoring_Details" />
+  </EntityType>
+  <EntityType Name="Call_Scoring_Details">
+    <Key>
+      <PropertyRef Name="Call_Score_ID" />
+    </Key>
+    <Property Name="Call_Score_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Call_ID" Type="Int64" />
+    <Property Name="Question_ID" Type="Byte" />
+    <Property Name="Answer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Score" Type="Double" />
+    <NavigationProperty Name="Call_Details" Relationship="Self.FK__Call_Scor__Call___60A75C0F" FromRole="Call_Scoring_Details" ToRole="Call_Details" />
+    <NavigationProperty Name="Question_Details" Relationship="Self.FK__Call_Scor__Quest__619B8048" FromRole="Call_Scoring_Details" ToRole="Question_Details" />
+  </EntityType>
+  <EntityType Name="Question_Details">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Qusetion_Name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Question_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Call_Scoring_Details" Relationship="Self.FK__Call_Scor__Quest__619B8048" FromRole="Question_Details" ToRole="Call_Scoring_Details" />
+  </EntityType>
+  <Association Name="FK__Call_Scor__Call___60A75C0F">
+    <End Role="Call_Details" Type="Self.Call_Details" Multiplicity="0..1" />
+    <End Role="Call_Scoring_Details" Type="Self.Call_Scoring_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Call_Details">
+        <PropertyRef Name="Call_ID" />
+      </Principal>
+      <Dependent Role="Call_Scoring_Details">
+        <PropertyRef Name="Call_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Call_Scor__Quest__619B8048">
+    <End Role="Question_Details" Type="Self.Question_Details" Multiplicity="0..1" />
+    <End Role="Call_Scoring_Details" Type="Self.Call_Scoring_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_Details">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Call_Scoring_Details">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CallAuditCenterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Call_Details" EntityType="Self.Call_Details" />
+    <EntitySet Name="Call_Scoring_Details" EntityType="Self.Call_Scoring_Details" />
+    <EntitySet Name="Question_Details" EntityType="Self.Question_Details" />
+    <AssociationSet Name="FK__Call_Scor__Call___60A75C0F" Association="Self.FK__Call_Scor__Call___60A75C0F">
+      <End Role="Call_Details" EntitySet="Call_Details" />
+      <End Role="Call_Scoring_Details" EntitySet="Call_Scoring_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Call_Scor__Quest__619B8048" Association="Self.FK__Call_Scor__Quest__619B8048">
+      <End Role="Question_Details" EntitySet="Question_Details" />
+      <End Role="Call_Scoring_Details" EntitySet="Call_Scoring_Details" />
+    </AssociationSet>
+    <EntitySet Name="User_Details" EntityType="CallAuditCenterModel.User_Details" />
+    <EntitySet Name="Login_Details" EntityType="CallAuditCenterModel.Login_Details" />
+  </EntityContainer>
+  <EntityType Name="User_Details">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HASH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SALT" Type="Binary" Nullable="false" MaxLength="512" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Login_Details">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+</Schema>

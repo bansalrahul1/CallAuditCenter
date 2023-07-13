@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CallAuditCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Call_Details">
+    <Key>
+      <PropertyRef Name="Call_ID" />
+    </Key>
+    <Property Name="Call_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Agent_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Agent_ID" Type="int" />
+    <Property Name="Call_DateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Call_Scoring_Details">
+    <Key>
+      <PropertyRef Name="Call_Score_ID" />
+    </Key>
+    <Property Name="Call_Score_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Call_ID" Type="bigint" />
+    <Property Name="Question_ID" Type="tinyint" />
+    <Property Name="Answer" Type="varchar" MaxLength="10" />
+    <Property Name="Score" Type="float" />
+  </EntityType>
+  <EntityType Name="Login_Details">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Pwd" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Question_Details">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Question_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Qusetion_Name" Type="varchar" MaxLength="5" />
+    <Property Name="Question_Description" Type="varchar" MaxLength="1000" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_Details">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HASH" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SALT" Type="varbinary" MaxLength="512" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Call_Scor__Call___60A75C0F">
+    <End Role="Call_Details" Type="Self.Call_Details" Multiplicity="0..1" />
+    <End Role="Call_Scoring_Details" Type="Self.Call_Scoring_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Call_Details">
+        <PropertyRef Name="Call_ID" />
+      </Principal>
+      <Dependent Role="Call_Scoring_Details">
+        <PropertyRef Name="Call_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Call_Scor__Quest__619B8048">
+    <End Role="Question_Details" Type="Self.Question_Details" Multiplicity="0..1" />
+    <End Role="Call_Scoring_Details" Type="Self.Call_Scoring_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_Details">
+        <PropertyRef Name="Question_ID" />
+      </Principal>
+      <Dependent Role="Call_Scoring_Details">
+        <PropertyRef Name="Question_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CallAuditCenterModelStoreContainer">
+    <EntitySet Name="Call_Details" EntityType="Self.Call_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Call_Scoring_Details" EntityType="Self.Call_Scoring_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login_Details" EntityType="Self.Login_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question_Details" EntityType="Self.Question_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Details" EntityType="Self.User_Details" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Call_Scor__Call___60A75C0F" Association="Self.FK__Call_Scor__Call___60A75C0F">
+      <End Role="Call_Details" EntitySet="Call_Details" />
+      <End Role="Call_Scoring_Details" EntitySet="Call_Scoring_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Call_Scor__Quest__619B8048" Association="Self.FK__Call_Scor__Quest__619B8048">
+      <End Role="Question_Details" EntitySet="Question_Details" />
+      <End Role="Call_Scoring_Details" EntitySet="Call_Scoring_Details" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Scorecard";
+}
+<div class="row mt-5">
+    <div class="col-2">
+        Select audited call:
+    </div>
+    <div class="col-3">
+        <select class="form-select">
+            <option selected>--Select--</option>
+            <option value="1">Call One</option>
+            <option value="2">Call Two</option>
+            <option value="3">Call Three</option>
+        </select>
+    </div>
+</div>
+<div class="  col-10 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <i class="bi-file-text"></i>
+            Summary of Call Audit
+        </div>
+        <div class="card-body">
+            <table class="w-100">
+                <thead>
+                    <tr>
+                        <th>S No.</th>
+                        <th>Question Title</th>
+                        <th>Answer</th>                        
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Stated calls was recorded?</td>
+                        <td>No</td>                      
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Stated Licensed Agent?</td>
+                        <td>No</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Confirmed Medicare A and B?</td>
+                        <td>Yes</td>                        
+                        <td>40</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+

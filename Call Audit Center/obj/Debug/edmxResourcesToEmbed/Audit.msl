@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CallAuditCenterModelStoreContainer" CdmEntityContainer="CallAuditCenterEntities">
+    <EntitySetMapping Name="Call_Details">
+      <EntityTypeMapping TypeName="CallAuditCenterModel.Call_Details">
+        <MappingFragment StoreEntitySet="Call_Details">
+          <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+          <ScalarProperty Name="Agent_Name" ColumnName="Agent_Name" />
+          <ScalarProperty Name="Agent_ID" ColumnName="Agent_ID" />
+          <ScalarProperty Name="Call_DateTime" ColumnName="Call_DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Call_Scoring_Details">
+      <EntityTypeMapping TypeName="CallAuditCenterModel.Call_Scoring_Details">
+        <MappingFragment StoreEntitySet="Call_Scoring_Details">
+          <ScalarProperty Name="Call_Score_ID" ColumnName="Call_Score_ID" />
+          <ScalarProperty Name="Call_ID" ColumnName="Call_ID" />
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question_Details">
+      <EntityTypeMapping TypeName="CallAuditCenterModel.Question_Details">
+        <MappingFragment StoreEntitySet="Question_Details">
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Qusetion_Name" ColumnName="Qusetion_Name" />
+          <ScalarProperty Name="Question_Description" ColumnName="Question_Description" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Details">
+      <EntityTypeMapping TypeName="CallAuditCenterModel.User_Details">
+        <MappingFragment StoreEntitySet="User_Details">
+          <ScalarProperty Name="SALT" ColumnName="SALT" />
+          <ScalarProperty Name="HASH" ColumnName="HASH" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login_Details">
+      <EntityTypeMapping TypeName="CallAuditCenterModel.Login_Details">
+        <MappingFragment StoreEntitySet="Login_Details">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,55 @@
+﻿@model Call_Audit_Center.Models.Login_Info
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="h-75"></div>
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post))   
+    {
+        <fieldset>
+            <legend>Call Audit Center Login</legend>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @if (ViewBag.Message != null)
+            {
+                <div style="border: 1px solid red">
+                    @ViewBag.Message
+                </div>
+            }
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(a => a.UserName)</td>
+                    <td>@Html.TextBoxFor(a => a.UserName)</td>
+                    <td>@Html.ValidationMessageFor(a => a.UserName)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(a => a.Pwd)
+                        
+                    </td>
+                    <td>
+                        @Html.PasswordFor(a => a.Pwd)
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(a => a.Pwd)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Login" />
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </fieldset>
+    }
+</body>
+</html>  

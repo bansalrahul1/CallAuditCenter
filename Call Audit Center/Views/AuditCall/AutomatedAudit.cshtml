@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Automated Audit";
+}
+<div class="row"><br /></div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="bi-mic"></i>
+                <i class="bi-soundwave"></i>
+                <i class="bi-file-text"></i>
+                Speech to Text
+            </div>
+            <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <select class="form-select">
+                            <option selected>--Select--</option>
+                            <option value="1">Upload Files</option>
+                            <option value="2">API Connection</option>
+                        </select>
+                    </div>
+                </div>
+                    <div class="row mt-4">
+                        <div class="col-8"> <input type="file" class="custom-file-input"></div>
+                        <div class="col-4"><button type="button" class="btn btn-secondary">Audit</button></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+            <div class="col-5">
+                <div class="card bg-secondary text-white">
+                    <div class="card-header">
+                        <i class="bi-file-text"></i>
+                        Summary
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3"> <h3> <i class="bi-telephone me-2"></i>10</h3></div>
+                            <div class="col-9"><a class="text-white" href="#">Number of calls audited</a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3"> <h3> <i class="bi-telephone-x me-2"></i>3</h3></div>
+                            <div class="col-9"><a class="text-white"  href="#">Number is compliance fail</a></div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class=" text-white stretched-link" href="#">View Audit Summary</a>
+                        <div><i class="bi-arrow-right-circle"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>

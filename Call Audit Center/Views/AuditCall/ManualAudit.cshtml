@@ -1,0 +1,66 @@
+﻿@model  dynamic
+@{
+    ViewBag.Title = "Manual Audit";
+    List<Question_Details> listofQuestions = (List<Question_Details>)Model.listofQuestions;
+    List<Call_Details> listofCalls = (List<Call_Details>)Model.listofCalls;
+}
+<div class="row">
+    <div class="col-5">
+        <div class="row col-12"> <h2>Questions</h2></div>
+        @if (listofQuestions.Count > 0) { 
+        foreach (var item in listofQuestions)
+        {
+            <div class="row col-12"><br /></div>
+            <div class="row col-12">@item.Qusetion_Name: @item.Question_Description</div>
+            <div class="row col-12">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="question_1_yes" name="question_1" value="Yes">
+                    <label class="form-check-label" for="question_1_yes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="question_1_no" name="question_1" value="No">
+                    <label class="form-check-label" for="question_1_no">No</label>
+                </div>
+            </div>
+
+        }
+        }
+      
+    </div>
+    <div class="col-5">
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="bi-telephone"></i>
+                All Calls
+            </div>
+            <div class="card-body">
+                <table class="w-100">
+                    <thead>
+                        <tr>
+                            <th>Call ID</th>
+                            <th>Agent Name</th>
+                            <th>DateTime</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (listofCalls.Count > 0)
+                        {
+                            foreach (var item in listofCalls)
+                            {
+                        <tr>
+                            <td>@item.Call_ID</td>
+                            <td>@item.Agent_Name</td>
+                            <td>@item.Call_DateTime</td>
+                            <td><a href="#">View</a></td>
+                        </tr>
+                            }
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
